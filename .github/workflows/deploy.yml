@@ -23,6 +23,6 @@ jobs:
               ssh -i private_key -o StrictHostKeyChecking=no -p ${{ secrets.PORT }} ${{ secrets.USER }}@${{ secrets.HOST }} << 'EOF'
                 cd /home/github-runner/app
                 echo "executing script"
-                python3 script/py
+                python3 script.py
               EOF
                
