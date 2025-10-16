@@ -1,0 +1,19 @@
+name: Deploy to test server
+
+on:
+    push:
+      branches: [ dev ]
+
+jobs:
+    deploy:
+      runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Send files to server
+        run: |
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > private_key
+          chmod 600 private_key
+        scp -i private_key -o StrickHostKeyChecking=no -p {{ secrets.PORT }} -r /* ${{ secrets.USER }}@{{ secrets.HOST }}:/home/github-runner/
