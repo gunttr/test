@@ -1,0 +1,26 @@
+name: Check code formating with Black
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+  
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with: 
+          python-version: '3.12.3'
+
+      - name: Install Black
+        run: apt install black
+
+      - name: Check code with Black
+        run: black --check .
