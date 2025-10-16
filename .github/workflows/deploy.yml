@@ -22,6 +22,7 @@ jobs:
             run: |
               ssh -i private_key -o StrictHostKeyChecking=no -p ${{ secrets.PORT }} ${{ secrets.USER }}@${{ secrets.HOST }} << 'EOF'
                 cd /home/github-runner/app
+                docker stop aboba_name
                 make build
                 make run
               EOF
