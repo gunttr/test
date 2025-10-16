@@ -20,7 +20,7 @@ jobs:
           python-version: '3.12.3'
 
       - name: Install Black
-        run: apt install black
+        run: apt update && install black
 
       - name: Check code with Black
         run: black --check .
