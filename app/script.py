@@ -6,4 +6,5 @@ while True:
         file.write("aboba\n")
         file.write("bebris\n")
         file.write("safsafas\n")
+        file.write("ds\n")
         sleep(5)
