@@ -19,10 +19,10 @@ jobs:
         with: 
           python-version: '3.12.3'
 
-      - name: Install Black
+      - name: Install Black via pip
         run: |
-          sudo apt update 
-          sudo apt install -y black
+          python3 -m pip install --upgrade pip
+          pip install black
 
       - name: Check code with Black
         run: black --check .
