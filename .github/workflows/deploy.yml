@@ -16,4 +16,13 @@ jobs:
             run: |
               echo "${{ secrets.SSH_PRIVATE_KEY }}" > private_key
               chmod 600 private_key
-              scp -i private_key -o StrictHostKeyChecking=no -P ${{ secrets.PORT }} -r app/* ${{ secrets.USER }}@${{ secrets.HOST }}:/home/${{ secrets.USER }}/
+              scp -i private_key -o StrictHostKeyChecking=no -P ${{ secrets.PORT }} -r app/* ${{ secrets.USER }}@${{ secrets.HOST }}:/home/${{ secrets.USER }}/app/
+
+          - name: Execute script
+            run: |
+              ssh -i private_key -o StrictHostKeyChecking=no -p ${{ secrets.PORT }} ${{ secrets.USER }}@${{ secrets.HOST }} << 'EOF'
+                cd /home/github-runner/app
+                echo "executing script"
+                python3 script/py
+              EOF
+               
